@@ -1,9 +1,19 @@
 import React from 'react'
 
-const BookCard = () => {
+interface Props {
+  cover_image: string;
+  title: string;
+  author: string;
+}
+const BookCard = (props: Props) => {
+  const { cover_image, title, author } = props
   return (
-    <div className='max-w-fit flex flex-col'>
-      <img src="https://i.huffpost.com/gen/1039678/original.jpg" className='h-5'/>
+    <div className='flex flex-col'>
+      <img src={cover_image} className='w-56 h-80' alt='Book Photos'/>
+      <div className='text-center flex flex-col gap-1 my-2'>
+        <div className='text-base font-bold'>{title}</div>
+        <p className='text-xs font-light'>{author}</p>
+      </div>
     </div>
   )
 }
