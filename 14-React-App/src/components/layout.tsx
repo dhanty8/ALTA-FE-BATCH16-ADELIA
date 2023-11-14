@@ -10,11 +10,9 @@ interface Props  {
 const Layout = (props: Readonly<Props>) => {
   const {children} = props
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="w-full flex flex-col min-h-screen bg-gray-900 text-white">
       <Navbar />
-      <div className="w-full grow flex flex-col mx-auto px-5 py-7">
-        {children}
-      </div>
+      <div className="flex flex-grow px-5 py-7">{children}</div>
       <Footer />
     </div>
   );

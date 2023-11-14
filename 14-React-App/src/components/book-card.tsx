@@ -16,10 +16,10 @@ const BookCard = (props: Props) => {
   const { goDetail } = action
   return (
     <div className='flex-auto flex flex-col cursor-pointer' onClick={() => goDetail(id)}>
-      <img src={cover_image} className='h-80' alt='Book Photos'/>
+      <img src={cover_image} className='h-80 rounded-md' alt='Book Photos'/>
       <div className='text-center flex flex-col gap-1 my-2 w-56'>
         <div className='text-base font-bold tracking-wide break-words'>{title}</div>
-        <p className='text-xs font-light'>{author}</p>
+        <p className='text-xs font-light text-gray-400'>{author}</p>
       </div>
     </div>
   )

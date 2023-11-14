@@ -19,7 +19,7 @@ const Index = () => {
   const fetchBooks = async () => {
     try {
       const result = await axios(
-        "https://hells-kitchen.onrender.com/api/v1/books"
+        "https://hells-kitchen.onrender.com/api/v1/books?limit=5"
       );
 
       setBooks(result.data.payload.datas);
@@ -41,7 +41,7 @@ const Index = () => {
   };
 
   const goDetail = (id: number) => {
-    navigate("/detail", {
+    navigate(`/detail`, {
       state: {
         id,
       },
@@ -54,7 +54,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="w-full h-screen flex flex-col my-6">
+      <div className="w-full flex flex-col">
         <div className="flex flex-col">
           <label className="font-bold my-4 text-2xl">New Arrival</label>
           <div className="flex-auto flex flex-row flex-wrap gap-5">

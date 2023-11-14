@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Detail from "../pages/books/detail";
 import Index from '../pages/index'
+import Login from "../pages/auth/login";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -12,6 +13,10 @@ export default function Router() {
       {
         path: "/detail",
         element: <Detail />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "*",
