@@ -16,7 +16,7 @@ interface Props {
 const Navbar = (props: Props) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Book[]>([]);
 
   const handleAvatarClick = () => {
@@ -63,13 +63,9 @@ const Navbar = (props: Props) => {
                   key={index}
                   className="py-1 px-2 cursor-pointer hover:bg-gray-700"
                   onClick={() => {
-                    console.log("test");
-                    
-                    navigate(`/detail`, {
-                      state: {
-                        id: book.id,
-                      },
-                    });
+                    setSearchQuery("")
+                    setSearchResults([])
+                    navigate(`/detail/${book.id}`);
                   }}
                 >
                   {book.title}

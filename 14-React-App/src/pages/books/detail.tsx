@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 import { Book } from "../../utils/apis/books";
 import Layout from "../../components/layout";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { getBook } from "../../utils/apis/books/api";
 
 const Detail = () => {
-  const location = useLocation();
-  const { state } = location;
-  
+  const { bookId } = useParams()  
 
   const [book, setBook] = useState<Book>();
 
   useEffect(() => {
     fetchDetailBook();
-  }, [state?.id]);
+  }, [bookId]);
 
   const fetchDetailBook = async () => {
     try {
-      const result = await axios(
-        `https://hells-kitchen.onrender.com/api/v1/books/${state?.id}`
-      );
+      const result = await getBook(bookId as string)
 
-      setBook(result.data.payload);
+      setBook(result.payload);
     } catch (error) {}
   };
 

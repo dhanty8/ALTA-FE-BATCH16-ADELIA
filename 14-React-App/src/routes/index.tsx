@@ -1,28 +1,39 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import Books from "../pages/books";
 import Detail from "../pages/books/detail";
-import Index from '../pages/index'
+import HistoryBorrow from "../pages/profile/history-borrow";
 import Login from "../pages/auth/login";
+import ProtectedRoutes from "./protected-routes";
 
 export default function Router() {
   const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Index />,
-      },
-      {
-        path: "/detail",
-        element: <Detail />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "*",
-        element: <div>404 page not found</div>,
-      },
+      element: <ProtectedRoutes />,
+      children: [
+        {
+          path: "/",
+          element: <Books />,
+        },
+        {
+          path: "/detail/:bookId",
+          element: <Detail />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/history-borrow",
+          element: <HistoryBorrow />,
+        },
+        {
+          path: "*",
+          element: <div>404 page not found</div>,
+        },
+      ],
+    },
   ]);
- 
+
   return <RouterProvider router={router} />;
 }
