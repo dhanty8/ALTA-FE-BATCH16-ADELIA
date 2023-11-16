@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Avatar from "./avatar";
 import { Book } from "../utils/apis/books";
 import axios from "axios";
+import { getBookSearchResult } from "../utils/apis/books/api";
 import person from "../assets/person.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -29,9 +30,9 @@ const Navbar = (props: Props) => {
 
   const handleSearch = async (query: string) => {
     try {
-      const results = await axios.get(`https://hells-kitchen.onrender.com/api/v1/books?query=${query}`)
+      const results = await getBookSearchResult(query)
     
-      setSearchResults(results.data.payload.datas);
+      setSearchResults(results.payload.datas);
     } catch (error) {
       console.log(error);
     }

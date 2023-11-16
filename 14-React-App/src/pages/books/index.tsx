@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import BookCard from "../../components/book-card";
 import Layout from "../../components/layout";
-import axios from "axios";
 import { getNewBooks } from "../../utils/apis/books/api";
 import { useNavigate } from "react-router-dom";
 

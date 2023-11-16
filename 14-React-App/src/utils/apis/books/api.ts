@@ -38,3 +38,15 @@ export const getNewBooks = async () => {
       throw Error(error.response.data.message);
     }
   };
+
+  export const getBookSearchResult = async (query: string) => {
+    try {
+      const response = await axiosWithConfig(
+        `https://hells-kitchen.onrender.com/api/v1/books?query=${query}`
+      );
+  
+      return response.data as Response<PayloadPagination<Book[]>>;
+    } catch (error: any) {
+      throw Error(error.response.data.message);
+    }
+  };

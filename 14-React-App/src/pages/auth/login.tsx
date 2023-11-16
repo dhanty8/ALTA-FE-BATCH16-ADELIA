@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { postLogin } from "../../utils/apis/auth/api";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleLogin = async () => {
     try {
-        const body = {
-            "email": username,
-            "password": password
-        }
-        const result = await axios.post("https://hells-kitchen.onrender.com/api/v1/login", body)
-        
-        const status = result.status
-        if (status === 200) {
-            navigate('/')
-        }
+      const body = {
+        email: username,
+        password: password,
+      };
+      const result = await postLogin(body);
+
+      const token = result.payload.token;
+      if (token) {
+        navigate("/");
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 
@@ -54,6 +54,7 @@ const Login = () => {
               className="px-3 py-2 bg-gray-900 rounded-md outline-none border-gray-800 border-2 border-solid text-gray-300 focus:border-gray-600"
             />
           </div>
+          <Link to={'/register'} className="text-gray-300">Not yet register ?</Link>
           <button
             type="button"
             onClick={handleLogin}

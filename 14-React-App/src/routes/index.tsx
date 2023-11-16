@@ -5,6 +5,7 @@ import Detail from "../pages/books/detail";
 import HistoryBorrow from "../pages/profile/history-borrow";
 import Login from "../pages/auth/login";
 import ProtectedRoutes from "./protected-routes";
+import Register from "../pages/auth/register";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export default function Router() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
         {
           path: "/history-borrow",
