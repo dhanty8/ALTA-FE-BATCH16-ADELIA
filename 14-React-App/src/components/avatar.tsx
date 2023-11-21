@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface AvatarProps {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   onClick?: () => void;
 }
 
@@ -11,11 +11,11 @@ const Avatar = (props: AvatarProps) => {
   return (
     <div className="relative">
       <button className="flex items-center focus:outline-none" onClick={onClick}>
-        <img
+        {src ? (<img
           src={src}
           alt={alt}
           className="w-8 h-8 rounded-full object-cover"
-        />
+        />) : (<div className="w-8 h-8 rounded-full bg-gray-400" />)}
       </button>
     </div>
   );

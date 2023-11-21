@@ -6,6 +6,8 @@ import axios from "axios";
 import { getBookSearchResult } from "../utils/apis/books/api";
 import person from "../assets/person.jpg";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "./ui/use-toast";
+import { useToken } from "@/utils/contexts/token";
 
 interface Props {
   user: {
@@ -16,6 +18,8 @@ interface Props {
 
 const Navbar = (props: Props) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const { token, user, changeToken } = useToken();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Book[]>([]);
@@ -30,8 +34,8 @@ const Navbar = (props: Props) => {
 
   const handleSearch = async (query: string) => {
     try {
-      const results = await getBookSearchResult(query)
-    
+      const results = await getBookSearchResult(query);
+
       setSearchResults(results.payload.datas);
     } catch (error) {
       console.log(error);
@@ -44,9 +48,18 @@ const Navbar = (props: Props) => {
     handleSearch(query);
   };
 
+  const handleLogout = () => {
+    changeToken();
+    toast({
+      description: "Logout Successfully",
+    });
+  };
+
   return (
     <header className="text-white p-4 flex justify-between items-center">
-      <a className="text-2xl font-semibold cursor-pointer" href="/">Library App</a>
+      <a className="text-2xl font-semibold cursor-pointer" href="/">
+        Library App
+      </a>
 
       <div className="flex flex-row gap-8">
         <div className="relative">
@@ -64,8 +77,8 @@ const Navbar = (props: Props) => {
                   key={index}
                   className="py-1 px-2 cursor-pointer hover:bg-gray-700"
                   onClick={() => {
-                    setSearchQuery("")
-                    setSearchResults([])
+                    setSearchQuery("");
+                    setSearchResults([]);
                     navigate(`/detail/${book.id}`);
                   }}
                 >
@@ -77,35 +90,58 @@ const Navbar = (props: Props) => {
         </div>
 
         <div className="group relative">
-          <Avatar src={person} alt="User Avatar" onClick={handleAvatarClick} />
+          <Avatar src={user.profile_picture} alt={user.full_name} onClick={handleAvatarClick} />
 
           {isDropdownOpen && (
             <div className="absolute bg-gray-900 right-0 mt-2 w-48 rounded-md shadow-lg border border-gray-600">
               <ul className="py-2">
-                <li className="px-4 py-2 text-white hover:bg-gray-700">
-                  <button
-                    className="w-full text-left focus:outline-none"
-                    onClick={handleMenuItemClick}
-                  >
-                    Edit Profile
-                  </button>
-                </li>
-                <li className="px-4 py-2 text-white hover:bg-gray-700">
-                  <button
-                    className="w-full text-left focus:outline-none"
-                    onClick={() => navigate('/login')}
-                  >
-                    Login
-                  </button>
-                </li>
-                <li className="px-4 py-2 text-white hover:bg-gray-700">
-                  <button
-                    className="w-full text-left focus:outline-none"
-                    onClick={handleMenuItemClick}
-                  >
-                    History Borrow
-                  </button>
-                </li>
+                {token ? (
+                  <>
+                    <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={handleMenuItemClick}
+                      >
+                        Profile
+                      </button>
+                    </li>
+                    <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={handleMenuItemClick}
+                      >
+                        History Borrow
+                      </button>
+                    </li>
+                    <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={() => navigate("/login")}
+                      >
+                        Login
+                      </button>
+                    </li>
+                    <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={() => navigate("/register")}
+                      >
+                        Register
+                      </button>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           )}

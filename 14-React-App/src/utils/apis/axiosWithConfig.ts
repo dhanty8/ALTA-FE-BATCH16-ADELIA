@@ -9,6 +9,7 @@ export const setAxiosConfig = (token: string) => {
 }
 
 axiosWithConfig.interceptors.request.use((axiosConfig) => {
+    axiosConfig.headers.Authorization = `Bearer ${bearerToken}`;
     return axiosConfig
 })
 

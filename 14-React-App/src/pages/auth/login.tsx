@@ -9,9 +9,11 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { postLogin } from "../../utils/apis/auth/api";
 import { useForm } from "react-hook-form";
+import { useToken } from "@/utils/contexts/token";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const Login = () => {
+  const { changeToken } = useToken();
   const navigate = useNavigate();
 
   const form = useForm<LoginSchema>({
@@ -25,7 +27,7 @@ const Login = () => {
   const handleLogin = async (data: LoginSchema) => {
     try {
       const result = await postLogin(data);
-
+      changeToken(result.payload.token);
       const token = result.payload.token;
       if (token) {
         navigate("/");
