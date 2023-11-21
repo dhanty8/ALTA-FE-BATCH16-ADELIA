@@ -4,7 +4,7 @@ const ProtectedRoutes = () => {
   const {pathname} = useLocation();
 
   const authProtected = ["/login", "/register"]
-  const tokenProtected = ["/profile", "/dashboard"]
+  const tokenProtected = ["/profile", "/dashboard", "/history-borrow", "/edit-profile"]
   const roleProtected = ["/dashboard"]
   return <Outlet />
 }
