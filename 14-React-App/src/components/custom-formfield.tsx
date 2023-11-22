@@ -32,7 +32,7 @@ interface ChildrenProps<T extends FieldValues> extends Props<T> {
 const CustomFormField = <T extends FieldValues>(
   props: Readonly<ChildrenProps<T>>
 ) => {
-    const {name, label, placeholder, options, description, control, children} = props
+    const {name, label, description, control, children} = props
   return (
     <FormField
       control={control}
