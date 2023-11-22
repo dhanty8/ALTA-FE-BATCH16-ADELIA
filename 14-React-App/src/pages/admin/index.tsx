@@ -32,7 +32,7 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Borrows } from "@/utils/apis/borrows";
+// import { Borrows } from "@/utils/apis/borrows";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout";
@@ -99,7 +99,7 @@ export const columns: ColumnDef<Book>[] = [
 
 const index = () => {
   const [books, setBooks] = useState<Book[]>([]);
-  const [borrows, setBorrows] = useState<Borrows[]>([]);
+  // const [borrows, setBorrows] = useState<Borrows[]>([]);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []

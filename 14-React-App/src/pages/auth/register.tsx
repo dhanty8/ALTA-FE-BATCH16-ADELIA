@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
 import { RegisterSchema, registerSchema } from "../../utils/apis/auth/types";
-import { postLogin, postRegister } from "../../utils/apis/auth/api";
 
 import { Button } from "@/components/ui/button";
 import CustomFormField from "@/components/custom-formfield";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
+import { postRegister } from "../../utils/apis/auth/api";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 

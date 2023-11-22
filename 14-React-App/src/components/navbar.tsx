@@ -2,21 +2,12 @@ import React, { useState } from "react";
 
 import Avatar from "./avatar";
 import { Book } from "../utils/apis/books";
-import axios from "axios";
 import { getBookSearchResult } from "../utils/apis/books/api";
-import person from "../assets/person.jpg";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "./ui/use-toast";
 import { useToken } from "@/utils/contexts/token";
 
-interface Props {
-  user: {
-    name: string;
-    avatar: string;
-  };
-}
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { token, user, changeToken } = useToken();

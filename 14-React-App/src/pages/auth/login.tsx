@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { LoginSchema, loginSchema } from "@/utils/apis/auth";
-import React, { FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import CustomFormField from "@/components/custom-formfield";

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { Book } from "../../utils/apis/books";
 import Layout from "../../components/layout";
-import axios from "axios";
 import { getBook } from "../../utils/apis/books/api";
+import { useParams } from "react-router-dom";
 
 const Detail = () => {
   const { bookId } = useParams()  

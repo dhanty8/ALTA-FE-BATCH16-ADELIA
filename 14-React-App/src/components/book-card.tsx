@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 interface Action {
   goDetail: (id: number) => void;
