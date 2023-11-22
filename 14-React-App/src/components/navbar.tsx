@@ -100,7 +100,10 @@ const Navbar = (props: Props) => {
                     <li className="px-4 py-2 text-white hover:bg-gray-700">
                       <button
                         className="w-full text-left focus:outline-none"
-                        onClick={handleMenuItemClick}
+                        onClick={() => {
+                          handleMenuItemClick()
+                          navigate("/profile")
+                        }}
                       >
                         Profile
                       </button>
@@ -108,11 +111,27 @@ const Navbar = (props: Props) => {
                     <li className="px-4 py-2 text-white hover:bg-gray-700">
                       <button
                         className="w-full text-left focus:outline-none"
-                        onClick={handleMenuItemClick}
+                        onClick={() => {
+                          handleMenuItemClick()
+                          navigate("/history-borrow")
+                        }}
                       >
                         History Borrow
                       </button>
                     </li>
+                    {user.role === "admin" && (
+                      <li className="px-4 py-2 text-white hover:bg-gray-700">
+                      <button
+                        className="w-full text-left focus:outline-none"
+                        onClick={() => {
+                          handleMenuItemClick()
+                          navigate("/dashboard")
+                        }}
+                      >
+                        Dashboard
+                      </button>
+                    </li>
+                    )}
                     <li className="px-4 py-2 text-white hover:bg-gray-700">
                       <button
                         className="w-full text-left focus:outline-none"

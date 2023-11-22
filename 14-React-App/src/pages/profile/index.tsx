@@ -1,10 +1,9 @@
+import { Profile, getProfile } from "@/utils/apis/users";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
-
-import { Profile, getProfile } from "@/utils/apis/users";
+import { Link } from "react-router-dom";
 
 const Index = () => {
 
@@ -25,7 +24,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-4 items-center justify-center text-center w-full">
         <figure className="w-60 h-60">
           <img
             className="aspect-square rounded-full object-cover"

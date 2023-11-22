@@ -3,10 +3,10 @@ import { PayloadPagination, Response } from "../../types/api";
 import { Book } from ".";
 import axiosWithConfig from "../axiosWithConfig";
 
-export const getBooks = async () => {
+export const getBooks = async (limit?:number) => {
   try {
     const response = await axiosWithConfig(
-      "https://hells-kitchen.onrender.com/api/v1/books?limit=5"
+      `https://hells-kitchen.onrender.com/api/v1/books${limit ? `?limit=${limit}`: ""}`
     );
 
     return response.data as Response<PayloadPagination<Book[]>>;
