@@ -4,7 +4,7 @@ import Avatar from "./avatar";
 import { Book } from "../utils/apis/books";
 import { getBookSearchResult } from "../utils/apis/books/api";
 import { useNavigate } from "react-router-dom";
-import useTheme from "@/utils/hooks/usetheme";
+import { useTheme } from "@/utils/hooks/useTheme";
 import { useToast } from "./ui/use-toast";
 import { useToken } from "@/utils/contexts/token";
 
