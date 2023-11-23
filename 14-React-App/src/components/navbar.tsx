@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import Avatar from "./avatar";
 import { Book } from "../utils/apis/books";
 import { getBookSearchResult } from "../utils/apis/books/api";
+import useChangeTheme from "@/utils/hooks/usetheme";
 import { useNavigate } from "react-router-dom";
-import useTheme from "../utils/hooks/usetheme";
 import { useToast } from "./ui/use-toast";
 import { useToken } from "@/utils/contexts/token";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [toggleTheme] = useTheme();
+  const [toggleTheme] = useChangeTheme();
   const { toast } = useToast();
   const { token, user, changeToken } = useToken();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
