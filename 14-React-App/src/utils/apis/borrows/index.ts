@@ -1,5 +1,6 @@
-import {Borrows} from "./types"
+import {BookBorrow, Borrows, UserBorrow} from "./types"
+
 import { getBorrows } from "./api";
 
 export {getBorrows}
-export type {Borrows}
+export type {Borrows, BookBorrow, UserBorrow}

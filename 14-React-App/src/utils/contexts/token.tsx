@@ -98,11 +98,9 @@ interface Context {
   }
   
   export function useToken() {
-    console.log("trigered");
     
     const context = useContext(TokenContext);
 
-    console.log(context);
     
   
     if (context === undefined) {

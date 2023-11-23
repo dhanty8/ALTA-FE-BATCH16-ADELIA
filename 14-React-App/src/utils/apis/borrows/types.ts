@@ -1,10 +1,10 @@
-interface Book {
+export interface BookBorrow {
     id: number;
     title: string;
     cover_image: string;
 }
 
-interface User {
+export interface UserBorrow {
     id: number;
     full_name: string;
 }
@@ -14,6 +14,6 @@ export interface Borrows {
     borrow_date: string;
     due_date: boolean;
     return_date: string;
-    book: Book;
-    user: User;
+    book: BookBorrow;
+    user: UserBorrow;
 }
