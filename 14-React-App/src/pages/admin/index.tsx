@@ -1,6 +1,11 @@
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { Book, getBooks } from "@/utils/apis/books";
-import { BookBorrow, Borrows, UserBorrow, getBorrows } from "@/utils/apis/borrows";
+import {
+  BookBorrow,
+  Borrows,
+  UserBorrow,
+  getBorrows,
+} from "@/utils/apis/borrows";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -36,8 +41,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout";
+import { deleteBook } from "@/utils/apis/books/api";
+import { useNavigate } from "react-router-dom";
 
-export const columns: ColumnDef<Book>[] = [
+const columns: ColumnDef<Book>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -69,7 +76,8 @@ export const columns: ColumnDef<Book>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: () => {
+    cell: ({row}) => {
+      const navigate = useNavigate();
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -81,12 +89,12 @@ export const columns: ColumnDef<Book>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-            // onClick={() => navigator.clipboard.writeText(payment.id)}
+            onClick={() => navigate(`/dashboard-book/${row.getValue("id")}`)}
             >
               Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => deleteBook(row.getValue("id"))}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -158,6 +166,7 @@ export const columnsBorrows: ColumnDef<Borrows>[] = [
 ];
 
 const index = () => {
+  const navigate = useNavigate();
   const [books, setBooks] = useState<Book[]>([]);
   const [borrows, setBorrows] = useState<Borrows[]>([]);
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -215,7 +224,7 @@ const index = () => {
       const resultBook = await getBooks();
       const resultBorrow = await getBorrows();
       setBooks(resultBook.payload.datas);
-      setBorrows(resultBorrow.payload.datas)
+      setBorrows(resultBorrow.payload.datas);
     } catch (error) {
       console.log(error);
     }
@@ -251,6 +260,7 @@ const index = () => {
             />
             <div className="flex flex-row gap-3">
               <Button
+                onClick={() => navigate("/dashboard-book")}
                 variant="outline"
                 className="ml-auto bg-white dark:bg-gray-900 dark:hover:border-gray-600 border-gray-100 dark:border-gray-700 dark:hover:bg-gray-900"
               >
@@ -375,10 +385,13 @@ const index = () => {
             <Input
               placeholder="Filter title..."
               value={
-                (tableBorrows.getColumn("title")?.getFilterValue() as string) ?? ""
+                (tableBorrows.getColumn("title")?.getFilterValue() as string) ??
+                ""
               }
               onChange={(event) =>
-                tableBorrows.getColumn("title")?.setFilterValue(event.target.value)
+                tableBorrows
+                  .getColumn("title")
+                  ?.setFilterValue(event.target.value)
               }
               className="max-w-sm px-3 py-2 bg-white/90 dark:bg-gray-900 rounded-md mr-4 outline-none border-gray-100 dark:border-gray-800 border-2 border-solid"
             />

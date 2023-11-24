@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import BookForm from "@/pages/admin/book-edit";
+import BookFormCreate from "@/pages/admin/book-create";
 import Books from "../pages/books";
 import Dashboard from "../pages/admin"
 import Detail from "../pages/books/detail";
@@ -46,6 +48,14 @@ export default function Router() {
         {
           path: "/dashboard",
           element: <Dashboard />,
+        },
+        {
+          path: "/dashboard-book",
+          element: <BookFormCreate />,
+        },
+        {
+          path: "/dashboard-book/:bookId",
+          element: <BookForm />,
         },
         {
           path: "*",
