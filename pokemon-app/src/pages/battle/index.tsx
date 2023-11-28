@@ -120,7 +120,7 @@ const Battle = () => {
                   Nickname
                 </span>
                 <input
-                  className="block w-full rounded-md border border-slate-300 bg-white py-2 px-3 font-arcade text-xs shadow-sm placeholder:italic focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                  className="block w-full rounded-md border border-slate-300 bg-white py-2 px-3 font-arcade text-xs shadow-sm placeholder:italic focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 text-black"
                   type="text"
                   onChange={handleNickname}
                 />
