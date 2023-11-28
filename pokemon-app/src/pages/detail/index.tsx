@@ -49,7 +49,7 @@ const Detail: React.FC = () => {
           </div>
           <div className="rounded-2xl border border-black shadow-lg shadow-black dark:border-white m-3 p-5 flex flex-col justify-center">
             {poke.stats.map((item: Stats, key: number) => (
-              <div className="w-full">
+              <div className="w-full" key={key}>
                 <p className="overflow-hidden break-all font-arcade text-xs capitalize tracking-wide text-black dark:text-white">
                   {item.stat.name}
                 </p>
